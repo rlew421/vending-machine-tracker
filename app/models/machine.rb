@@ -6,6 +6,6 @@ class Machine < ApplicationRecord
   has_many :snacks, through: :machine_snacks
 
   def average_price
-    (snacks.average(:price).to_f)/100
+    average_price =(snacks.average(:price))
   end
 end

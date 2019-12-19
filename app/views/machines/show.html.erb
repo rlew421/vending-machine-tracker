@@ -3,8 +3,8 @@
 <% @machine.snacks.each do |snack| %>
   <section id= 'snack-<%=snack.id%>'>
     <p><%= snack.name %></p>
-    <p>Price: <%= snack.price.to_f.round(2) %></p>
+    <p>Price: <%= number_to_currency(snack.price) %></p>
   </section>
 <% end %>
 
-<p>Average Price: <%= @machine.snacks.average_price %></p>
+<p>Average Price: <%= number_to_currency(@machine.average_price) %></p>

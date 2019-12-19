@@ -14,25 +14,25 @@ RSpec.describe 'When a user visits a vending machine show page', type: :feature 
     owner = Owner.create(name: "Sam's Snacks")
     dons  = owner.machines.create(location: "Don's Super Awesome Vending Machine")
 
-    hot_cheetos = dons.snacks.create!(name: "Hot Cheetos", price: 1.75)
-    pringles = dons.snacks.create!(name: "Pringles", price: 2.50)
-    sour_patch_kids = dons.snacks.create!(name: "Sour Patch Kids", price: 2.00)
+    hot_cheetos = dons.snacks.create!(name: "Hot Cheetos", price: 150)
+    pringles = dons.snacks.create!(name: "Pringles", price: 250)
+    sour_patch_kids = dons.snacks.create!(name: "Sour Patch Kids", price: 200)
 
     visit machine_path(dons)
 
     within "#snack-#{hot_cheetos.id}" do
       expect(page).to have_content(hot_cheetos.name)
-      expect(page).to have_content("Price: #{hot_cheetos.price}")
+      expect(page).to have_content("Price: $#{hot_cheetos.price}")
     end
 
     within "#snack-#{pringles.id}" do
       expect(page).to have_content(pringles.name)
-      expect(page).to have_content("Price: #{pringles.price}")
+      expect(page).to have_content("Price: $#{pringles.price}")
     end
 
     within "#snack-#{sour_patch_kids.id}" do
       expect(page).to have_content(sour_patch_kids.name)
-      expect(page).to have_content("Price: #{sour_patch_kids.price}")
+      expect(page).to have_content("Price: $#{sour_patch_kids.price}")
     end
   end
 
@@ -40,12 +40,12 @@ RSpec.describe 'When a user visits a vending machine show page', type: :feature 
     owner = Owner.create(name: "Sam's Snacks")
     dons  = owner.machines.create(location: "Don's Super Awesome Vending Machine")
 
-    hot_cheetos = dons.snacks.create!(name: "Hot Cheetos", price: 150)
+    hot_cheetos = dons.snacks.create!(name: "Hot Cheetos", price: 175)
     pringles = dons.snacks.create!(name: "Pringles", price: 250)
     sour_patch_kids = dons.snacks.create!(name: "Sour Patch Kids", price: 200)
 
     visit machine_path(dons)
 
-    expect(page).to have_content("Average Price: $2.00")
+    expect(page).to have_content("Average Price: $2.08")
   end
 end
